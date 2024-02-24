@@ -63,7 +63,7 @@ public class TaskController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping ("/{taskId}") /*Llega el id del producto a cambiar y los datos que hay que cambiar en task.*/
+    @PutMapping ("/{taskId}") /*Llega el id de la tarea a cambiar y los datos que hay que cambiar en task.*/
     public ResponseEntity<Task> updateTask (@PathVariable("taskId") long id, @Valid @RequestBody Task task, BindingResult result){
         if (result.hasErrors()) {
             String errorMessage = result.getAllErrors().stream()
