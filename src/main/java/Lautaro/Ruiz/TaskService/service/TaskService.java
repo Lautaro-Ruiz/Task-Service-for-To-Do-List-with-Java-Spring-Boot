@@ -45,7 +45,9 @@ public class TaskService implements TaskServiceInterface {
         if (task_DB == null)
             return null;
         task_DB.setName(task.getName());
-        task_DB.setDescription(task.getDescription());task_DB.setPriority(task.getPriority());
+        task_DB.setDescription(task.getDescription());
+        task_DB.setPriority(task.getPriority());
+        task_DB.setStatus(task.getStatus());
         task_DB.setEliminated(task.isEliminated());
         return taskRepository.save(task_DB);
     }
@@ -59,8 +61,8 @@ public class TaskService implements TaskServiceInterface {
     }
 
     @Override
-    public void addTask(Task newTask) {
-        taskRepository.save(newTask);
+    public Task addTask(Task newTask) {
+        return taskRepository.save(newTask);
     }
 
     public boolean isValidPriority (TaskPriority priority) {

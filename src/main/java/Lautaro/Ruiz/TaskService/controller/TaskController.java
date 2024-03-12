@@ -59,8 +59,7 @@ public class TaskController {
         if (newTask == null) return ResponseEntity.badRequest().body("La tarea que intenta agregar no puede ser null");
         if (!taskService.isValidPriority(newTask.getPriority())) return ResponseEntity.badRequest().body("La tarea que intenta agregar no posee una prioridad valida.");
         if (!taskService.isValidStatus(newTask.getStatus())) return ResponseEntity.badRequest().body("La tarea que intenta agregar no posee un estado valido.");
-        taskService.addTask(newTask);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(taskService.addTask(newTask));
     }
 
     @PutMapping ("/{taskId}") /*Llega el id de la tarea a cambiar y los datos que hay que cambiar en task.*/
@@ -74,6 +73,8 @@ public class TaskController {
         task.setTaskId(id); /*A los datos que queremos actualizar que vienen en task, le seteamos el id del producto a cambiar.*/
         Task task_DB = taskService.updateTask(task); /*Llamado al metodo que se encarga de actualizar los campos.*/
         if(task_DB == null) return ResponseEntity.badRequest().header("X-Info", "No se hallaron resultados de la tarea que se intenta eliminar.").build();
+        System.out.println("TASK ORIGINAL"+task);
+        System.out.println("TASK ACTUALIZADA"+task_DB);
         return ResponseEntity.ok(task_DB);
     }
 

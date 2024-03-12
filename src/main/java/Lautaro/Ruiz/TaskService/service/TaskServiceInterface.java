@@ -13,5 +13,5 @@ public interface TaskServiceInterface {
     Task getTask (long id);
     Task updateTask (Task task);
     Task deleteTask (long id);
-    void addTask(Task newTask);
+    Task addTask(Task newTask);
 }
